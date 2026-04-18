@@ -1,2 +1,3 @@
-# Simple-Injector
-A Simple injector using raw windows 32 API and Dear ImGui as a framework.
+# Features
+
+Non yet its a prototype and its still in develepment curent stage is Gui and appliance of the Backend class to the Frontend class
