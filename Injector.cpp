@@ -22,6 +22,7 @@ static bool                     g_SwapChainOccluded = false;
 static UINT                     g_ResizeWidth = 0, g_ResizeHeight = 0;
 static ID3D11RenderTargetView*  g_mainRenderTargetView = nullptr;
 
+bool Test = false;
 bool DInjector_active = true;
 bool CreateDeviceD3D(HWND hWnd);
 void CleanupDeviceD3D();
@@ -156,7 +157,7 @@ public:
         io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
 
         // Setup ImGui style I can use Light() as well
-        StyleColorsDark();
+        //StyleColorsDark();
 
         // Setup scaling
         ImGuiStyle& style = GetStyle();
@@ -198,9 +199,11 @@ public:
                 g_ResizeWidth = g_ResizeHeight = 0;
                 CreateRenderTarget();
             }
-
-            ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f); // add color
-
+            // Change Background Color
+            ImVec4 clear_color = ImVec4(0.239f, 0.239f, 0.239f, 1.000f); // Pro Tip use: https://htmlcolorcodes.com/color-picker/ 
+                                                                         // to get rgb values and devide it with 255 to get float values
+                                                                         // which is the max rgb value 61/255 is 0.239... i used darkish 
+                                                                         //grey
             // Start the frame
             ImGui_ImplDX11_NewFrame();
             ImGui_ImplWin32_NewFrame();
@@ -213,13 +216,31 @@ public:
                 SetWindowPos(ImVec2(0, 0));
                 SetWindowSize(ImVec2(io.DisplaySize.x, io.DisplaySize.y));
                 
-                SetCursorPos(ImVec2(400.0f, 400.0f));
+                // Adding Text
+                SetCursorPos(ImVec2(50.0f, 100.0f));
+                PushFont(NULL, 16.0f);
                 Text("Select Process: "); // Display some text (you can use a format strings too)
+                PopFont();
 
-                SetCursorPos(ImVec2(400.0f, 250.0f));
+                SetCursorPos(ImVec2(50.0f, 175.0f));
+                PushFont(NULL, 16.0f);
                 Text("DLL Path: ");
+                PopFont();
 
-                if (Button("Choose The Program You Want To Inject"))
+                SetCursorPos(ImVec2(50.0f, 250.0f));
+                PushFont(NULL, 16.0f);
+                Checkbox(" Close After Injection", &Test);
+                PopFont();
+
+                // Adding the buttons
+                SetCursorPos(ImVec2(150.0f, 400.0f)); // Set Possision
+                if (Button("Inject", ImVec2(200.0f, 50.0f))) // Name and Resize The Button
+                {
+                    // Do something
+                }
+
+                SetCursorPos(ImVec2(450.0f, 400.0f));
+                if (Button("Quit", ImVec2(200.0f, 50.0f))) // Name and Resize The Button
                 {
                     // Do something
                 }
