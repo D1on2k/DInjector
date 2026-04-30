@@ -79,3 +79,4 @@ Keep it clean and readable.
 > This tool is provided **for educational purposes only**.  
 > By using this code, **you take full responsibility** for how it is used.  
 > The developer is **not responsible** for any misuse, legal consequences or damages.
+> This tool is used for **EDUCATIONAL PURPUSES** and **DEBUGGING** only.
